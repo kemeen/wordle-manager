@@ -11,7 +11,6 @@ from soccer_table import SoccerTable
 
 from wordle_ui import BarChartWordleUI, MatPlotLibUI, PlayerTimeHistoryPlot
 import hydra
-import dataframe_image as dfi
 
 # from hydra.core.config_store import ConfigStore
 

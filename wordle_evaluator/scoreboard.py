@@ -62,11 +62,8 @@ class Scoreboard:
     def get_player_points_of_day(self, date: date) -> pd.DataFrame:
         # get players for the day
         players = sorted(self.get_players_for_day(date), key=lambda player: player.name)
-        # for player in players:
-        #     print(player)
 
         results = {"players": [player.name for player in players]}
-        # player_results = {player:0 for player in players}
 
         for provider in get_providers_from_scores(scores=self.scores):
             results[provider.name] = [MAX_POINTS] * len(players)
@@ -104,6 +101,24 @@ class Scoreboard:
         return player_points_of_day.index[
             player_points_of_day[col] == min_points
         ].tolist()
+
+    def get_winners_from_scores(
+        self, scores: List[Score], provider: Provider | None = None
+    ) -> List[Player]:
+
+        # for score in scores:
+        #     print(score)
+
+        player_points = self.get_player_points_from_scores(scores=scores)
+        print(player_points)
+
+        # print(player_points)
+
+        col = "total"
+        if provider:
+            col = provider.name
+        min_points = player_points[col].min()
+        return player_points.index[player_points[col] == min_points].tolist()
 
     def get_loosers_of_day(self, day: datetime) -> List[Player]:
         player_points_of_day = self.get_player_points_of_day(date=day)
@@ -188,3 +203,36 @@ class Scoreboard:
         days = [score.date for score in player_scores]
         average_points = np.convolve(points, np.ones(window) / window, mode="valid")
         return (average_points.tolist(), days[-len(average_points) :])
+
+    def get_player_points_from_scores(self, scores: List[Score]) -> pd.DataFrame:
+        # get players for the day
+        players = sorted(self.players, key=lambda player: player.name)
+
+        results = {"players": [player.name for player in players]}
+
+        # for score in scores:
+        #     print(score)
+
+        for provider in get_providers_from_scores(scores=scores):
+            results[provider.name] = [MAX_POINTS] * len(players)
+            provider_scores = filter_scores_by_provider(
+                scores=scores, provider=provider
+            )
+            # print(provider_scores)
+
+            for i, player in enumerate(players):
+                player_scores = filter_scores_by_player(
+                    scores=provider_scores, player=player
+                )
+                if not player_scores:
+                    continue
+                max_score = max(player_scores, key=lambda x: x.points)
+                # print(player, max_score)
+                results[provider.name][i] = max_score.points
+        # print(results)
+
+        results_df = pd.DataFrame(results)
+        results_df.set_index("players", inplace=True)
+        results_df["total"] = results_df.sum(axis=1).values
+        results_df.sort_values(by="total", inplace=True)
+        return results_df

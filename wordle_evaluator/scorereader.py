@@ -97,6 +97,10 @@ def filter_scores_by_date(scores: List[Score], date: date) -> List[Score]:
     return [score for score in scores if score.date.date() == date]
 
 
+def filter_scores_by_game_ids(scores: List[Score], game_ids: List[int]) -> List[Score]:
+    return [score for score in scores if score.game_id in game_ids]
+
+
 def get_providers_from_scores(scores: List[Score]) -> Set[Provider]:
     return set([score.provider for score in scores])
 

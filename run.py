@@ -1,13 +1,13 @@
 from datetime import datetime
 import pathlib
 
-from scorereader import TextScoreReader
-from scoreboard import Scoreboard
-from whats_app_reader import TextMessageReader
-from provider import Provider
-from player import Player
+from wordle_evaluator.scorereader import TextScoreReader
+from wordle_evaluator.scoreboard import Scoreboard
+from wordle_evaluator.whats_app_reader import TextMessageReader
+from wordle_evaluator.provider import Provider
+from wordle_evaluator.player import Player
 
-from soccer_table import SoccerTable
+from wordle_evaluator.soccer_table import SoccerTable
 
 import hydra
 
@@ -31,7 +31,8 @@ def ord(n):
 def main(cfg) -> None:
 
     data_path = pathlib.Path(cfg.files.data_path)
-    with open(data_path, "r", encoding="utf-8") as f:
+
+    with data_path.open("r", encoding="utf-8") as f:
         messages = f.read()
 
     whats_app_reader = TextMessageReader()
@@ -39,6 +40,7 @@ def main(cfg) -> None:
 
     score_board = Scoreboard()
     providers = []
+
     for provider_config in cfg.providers:
         # register US Wordle Provider to scoreboard
         provider = Provider(

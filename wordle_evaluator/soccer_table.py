@@ -1,15 +1,15 @@
 from dataclasses import dataclass
 from typing import List
-from scoreboard import Scoreboard
 import pandas as pd
 
-from scorereader import (
+from .scoreboard import Scoreboard
+from .scorereader import (
     filter_scores_by_game_ids,
     filter_scores_by_provider,
     get_days_played_from_scores,
     get_players_from_scores,
 )
-from provider import Provider
+from .provider import Provider
 
 
 @dataclass

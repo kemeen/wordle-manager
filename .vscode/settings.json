@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./wordle_evaluator"
+    ]
+}

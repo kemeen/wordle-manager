@@ -4,9 +4,9 @@ from enum import unique
 import re
 from typing import List, Protocol, Set
 
-from player import Player
-from provider import Provider
-from whats_app_reader import Message, MessageReader
+from .player import Player
+from .provider import Provider
+from .whats_app_reader import Message, MessageReader
 
 # ITEM_PATTERN = re.compile(r'(?P<date>\d{2}.\d{2}.\d{2}, \d{2}:\d{2}) - (?P<player_name>[\w ]+): (?P<provider_name>[\w\.]+)(?: 🇩🇪)? (?P<game_id>\d{3}) (?P<points>[\d|X|x]{1})/6')
 PROVIDER_DICT = {

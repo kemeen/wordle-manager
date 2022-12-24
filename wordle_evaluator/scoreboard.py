@@ -3,9 +3,9 @@ from datetime import date, datetime
 from typing import Dict, List, Set, Tuple
 import pandas as pd
 import numpy as np
-from player import Player
-from provider import Provider
-from scorereader import (
+from .player import Player
+from .provider import Provider
+from .scorereader import (
     Score,
     filter_scores_by_date,
     filter_scores_by_player,

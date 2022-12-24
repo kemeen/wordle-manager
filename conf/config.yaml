@@ -9,7 +9,7 @@ providers:
     website: "https://6mal5.com/"
     score_pattern: '6mal5\.com  (?P<game_id>\d+) (?P<points>[\d|X|x]{1})/6'
 files:
-  data_path: "D:/software_projects/python/wordle_evaluator/data/WhatsApp Chat mit WORDLE.txt"
+  data_path: "data/WhatsApp Chat mit WORDLE.txt"
 formats:
   date_format: "%d.%m.%y, %H:%M"
   crown_emoji: '\U0001F451'

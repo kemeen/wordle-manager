@@ -1,0 +1,33 @@
+providers:
+- name: wordle
+  website: https://www.nytimes.com/games/wordle/index.html
+  score_pattern: Wordle (?P<game_id>\d+) (?P<points>[\d|X|x]{1})/6
+- name: wördl
+  website: https://wordle.at/
+  score_pattern: Wördl (?P<game_id>\d+) (?P<points>[\d|X|x]{1})/6
+- name: 6mal5.com
+  website: https://6mal5.com/
+  score_pattern: 6mal5\.com  (?P<game_id>\d+) (?P<points>[\d|X|x]{1})/6
+files:
+  data_path: data/WhatsApp Chat mit WORDLE.txt
+formats:
+  date_format: '%d.%m.%y, %H:%M'
+  crown_emoji: \U0001F451
+  booby_emoji: \U0001F4A9
+players:
+- name: Kevin
+  handle: Kevin
+  color: '#2a7330'
+- name: Susan
+  handle: Susan Maureen Murphy
+  color: '#eb7d34'
+- name: Michelle
+  handle: Michelle Jäger
+  color: '#ab1b1b'
+- name: Paul
+  handle: Paul Siegel
+  color: '#1f2687'
+soccer_scores:
+  win: 3
+  tie: 1
+  booby: 0

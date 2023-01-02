@@ -66,7 +66,7 @@ class TextScoreReader:
     def get_scores(self) -> List[Score]:
         return self.scores
 
-    def _convert_message_to_score(self, message: Message) -> Score | None:  # type: ignore
+    def _convert_message_to_score(self, message: Message):  # type: ignore
 
         pattern = re.compile(self.provider.score_pattern)
         score_details = pattern.search(message.content)

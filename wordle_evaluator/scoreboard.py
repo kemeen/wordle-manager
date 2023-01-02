@@ -106,7 +106,7 @@ class Scoreboard:
         ].tolist()
 
     def get_winners_from_scores(
-        self, scores: List[Score], provider: Provider | None
+        self, scores: List[Score], provider: Provider
     ) -> List[Player]:
 
         # for score in scores:

@@ -3,9 +3,10 @@ from datetime import date, datetime
 from typing import Dict, List, Set, Tuple
 import pandas as pd
 import numpy as np
-from player import Player
-from provider import Provider
-from scorereader import (
+
+from .player import Player
+from .provider import Provider
+from .scorereader import (
     Score,
     filter_scores_by_date,
     filter_scores_by_player,
@@ -28,7 +29,11 @@ class Scoreboard:
         self.score_readers[provider] = reader
 
     def register_scores(self, scores: List[Score]) -> None:
-        self.scores.extend(scores)
+        for score in scores:
+            if score in self.scores:
+                print(f"Score already registered: {str(score)}")
+                continue
+            self.scores.append(score)
 
     def update_players_from_scores(self) -> None:
         scores = self.get_all_scores()
@@ -110,8 +115,6 @@ class Scoreboard:
         #     print(score)
 
         player_points = self.get_player_points_from_scores(scores=scores)
-        print(player_points)
-
         # print(player_points)
 
         col = "total"

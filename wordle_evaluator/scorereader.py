@@ -4,9 +4,9 @@ from enum import unique
 import re
 from typing import List, Protocol, Set
 
-from player import Player
-from provider import Provider
-from whats_app_reader import Message, MessageReader
+from .player import Player
+from .provider import Provider
+from .whats_app_reader import Message, MessageReader
 
 # ITEM_PATTERN = re.compile(r'(?P<date>\d{2}.\d{2}.\d{2}, \d{2}:\d{2}) - (?P<player_name>[\w ]+): (?P<provider_name>[\w\.]+)(?: 🇩🇪)? (?P<game_id>\d{3}) (?P<points>[\d|X|x]{1})/6')
 PROVIDER_DICT = {
@@ -28,6 +28,16 @@ class Score:
     date: datetime
     provider: Provider
     game_id: int
+
+    def __eq__(self, __o: object) -> bool:
+        return all(
+            [
+                self.player == __o.player,
+                self.points == __o.points,
+                self.provider == __o.provider,
+                self.game_id == __o.game_id,
+            ]
+        )
 
 
 class ScoreReader(Protocol):
@@ -62,7 +72,9 @@ class TextScoreReader:
         score_details = pattern.search(message.content)
 
         if score_details is None:
-            # print("NO SCORE_PATTERN")
+            print(
+                f"NO SCORE_PATTERN in '{message}' for provider '{self.provider.name}'"
+            )
             return
 
         # get player

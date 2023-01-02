@@ -1,15 +1,17 @@
 providers:
   - name: wordle
     website: "https://www.nytimes.com/games/wordle/index.html"
-    score_pattern: 'Wordle (?P<game_id>\d+) (?P<points>[\d|X|x]{1})/6'
+    score_pattern: 'Wordle (?P<game_id>\d+) (?P<points>[\d|X|x]{1})/6(?![\s\d*]+wordle\.at)'
   - name: wördl
     website: "https://wordle.at/"
-    score_pattern: 'Wördl (?P<game_id>\d+) (?P<points>[\d|X|x]{1})/6'
+    score_pattern: 'Wordle (?P<game_id>\d+) (?P<points>[\d|X|x]{1})/6(?:[\s\d*]+)wordle\.at'
   - name: 6mal5.com
     website: "https://6mal5.com/"
-    score_pattern: '6mal5\.com  (?P<game_id>\d+) (?P<points>[\d|X|x]{1})/6'
+    score_pattern: '[6mal5\.com\6mal5]  (?P<game_id>\d+) (?P<points>[\d|X|x]{1})/6'
 files:
-  data_path: "D:/software_projects/python/wordle_evaluator/data/WhatsApp Chat mit WORDLE.txt"
+  data_path: "D:/software_projects/python/wordle_evaluator/data/20230102_chat.txt"
+  scoreboard_pickle: scoreboard.pickle
+  # scoreboard_pickle: null
 formats:
   date_format: "%d.%m.%y, %H:%M"
   crown_emoji: '\U0001F451'

@@ -169,7 +169,7 @@ class Scoreboard:
 
         return {k: v for k, v in sorted(results.items(), key=lambda item: item[1])}
 
-    def get_provider(self, name: str) -> Provider | None:
+    def get_provider(self, name: str) -> Provider:
         for provider in self.score_readers:
             if provider.name == name:
                 return provider

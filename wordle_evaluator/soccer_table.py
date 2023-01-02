@@ -80,7 +80,7 @@ class SoccerTable:
         )
         for day in relevant_days:
             # print(day)
-            winners = self.scoreboard.get_winners_of_day(day=day)
+            winners = self.scoreboard.get_winners_of_day(day=day, provider=None)
             # print(winners)
             p_ids = [table_dict["Player"].index(w) for w in winners]
             if len(winners) == 1:

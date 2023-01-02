@@ -174,7 +174,7 @@ class Scoreboard:
             if provider.name == name:
                 return provider
 
-    def get_longest_win_streak(self, provider: Provider | None = None) -> List[Score]:
+    def get_longest_win_streak(self, provider: Provider) -> List[Score]:
         scores = self.get_all_scores()
 
         if Provider:
@@ -188,8 +188,8 @@ class Scoreboard:
     def get_moving_average_scores(
         self,
         player: Player,
-        day: datetime | None = None,
-        provider: Provider | None = None,
+        day: datetime,
+        provider: Provider,
         window: int = 5,
     ) -> Tuple[List[float], List[datetime]]:
         scores = self.get_all_scores()

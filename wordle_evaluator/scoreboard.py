@@ -93,9 +93,7 @@ class Scoreboard:
         results_df.sort_values(by="total", inplace=True)
         return results_df
 
-    def get_winners_of_day(
-        self, day: date, provider: Provider | None = None
-    ) -> List[Player]:
+    def get_winners_of_day(self, day: date, provider: Provider | None) -> List[Player]:
 
         player_points_of_day = self.get_player_points_of_day(date=day)
         # print(player_points_of_day)

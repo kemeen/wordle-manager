@@ -147,7 +147,7 @@ def main() -> None:
     # save the scoreboard to a pickle
     with open("scoreboard.pickle", "wb") as f:
         pickle.dump(score_board, f)
-
+    # return
     soccer_table = SoccerTable(scoreboard=score_board)
     # date = datetime.now()
 

@@ -46,7 +46,8 @@ def main() -> None:
         st.header("Table")
 
         st.dataframe(
-            soccer_table.get_table_by_date_range(start=start_date, end=end_date)
+            soccer_table.get_table_by_date_range(start=start_date, end=end_date),
+            use_container_width=True,
         )
 
     # with st.container():

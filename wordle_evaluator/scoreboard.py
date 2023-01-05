@@ -237,3 +237,7 @@ class Scoreboard:
         results_df["total"] = results_df.sum(axis=1).values
         results_df.sort_values(by="total", inplace=True)
         return results_df
+
+    def last_score(self) -> date:
+        sorted_scores = sorted(self.scores, key=lambda x: x.date)
+        return sorted_scores[-1].date

@@ -18,40 +18,10 @@ import pickle
 # where <path> is relative:
 # engine = create_engine("sqlite:///foo.db")
 
-JUNE = {
-    "wordle": range(347, 377),
-    "wördl": range(347, 377),
-    "6mal5.com": range(485, 515),
-}
-JULY = {
-    "wordle": range(377, 408),
-    "wördl": range(377, 408),
-    "6mal5.com": range(515, 546),
-}
-AUGUST = {
-    "wordle": range(408, 439),
-    "wördl": range(408, 439),
-    "6mal5.com": range(546, 577),
-}
-SEPTEMBER = {
-    "wordle": range(439, 469),
-    "wördl": range(439, 469),
-    "6mal5.com": range(577, 607),
-}
-OCTOBER = {
-    "wordle": range(469, 500),
-    "wördl": range(469, 500),
-    "6mal5.com": range(607, 638),
-}
-NOVEMBER = {
-    "wordle": range(500, 530),
-    "wördl": range(500, 530),
-    "6mal5.com": range(638, 668),
-}
-DECEMBER = {
-    "wordle": range(530, 561),
-    "wördl": range(530, 561),
-    "6mal5.com": range(668, 699),
+JANUARY = {
+    "wordle": range(561, 592),
+    "wördl": range(561, 592),
+    "6mal5.com": range(699, 730),
 }
 YEAR_2022 = {
     "wordle": range(196, 561),
@@ -152,40 +122,15 @@ def main() -> None:
     # date = datetime.now()
 
     tables = [
-        # (
-        #     "July",
-        #     date(2022, 7, 31),
-        #     soccer_table.get_table_by_game_ids(games=JULY, providers=providers),
-        # ),
-        # (
-        #     "August",
-        #     date(2022, 8, 31),
-        #     soccer_table.get_table_by_game_ids(games=AUGUST, providers=providers),
-        # ),
-        # (
-        #     "September",
-        #     date(2022, 9, 30),
-        #     soccer_table.get_table_by_game_ids(games=SEPTEMBER, providers=providers),
-        # ),
-        # (
-        #     "October",
-        #     date(2022, 10, 31),
-        #     soccer_table.get_table_by_game_ids(games=OCTOBER, providers=providers),
-        # ),
-        # (
-        #     "November",
-        #     date(2022, 11, 30),
-        #     soccer_table.get_table_by_game_ids(games=NOVEMBER, providers=providers),
-        # ),
-        (
-            "December",
-            date(2022, 12, 31),
-            soccer_table.get_table_by_game_ids(games=DECEMBER, providers=providers),
-        ),
         (
             "2022",
             date(2022, 12, 31),
             soccer_table.get_table_by_game_ids(games=YEAR_2022, providers=providers),
+        ),
+        (
+            "January",
+            date(2023, 1, 5),
+            soccer_table.get_table_by_game_ids(games=JANUARY, providers=providers),
         ),
     ]
     for name, d, table in tables:

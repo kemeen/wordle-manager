@@ -49,10 +49,10 @@ def main() -> None:
             soccer_table.get_table_by_date_range(start=start_date, end=end_date)
         )
 
-    with st.container():
-        st.header("Results Loader")
+    # with st.container():
+    #     st.header("Results Loader")
 
-        st.file_uploader(label="Raw Results")
+    #     st.file_uploader(label="Raw Results")
 
 
 if __name__ == "__main__":

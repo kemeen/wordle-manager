@@ -30,6 +30,9 @@ def main() -> None:
 
     with st.container():
         st.title("Wordle Results")
+        st.write(
+            f"Last score from { score_board.last_score().strftime('%A, %B %d, %Y')}"
+        )
 
     with st.container():
         st.header("Date Range Selection")
@@ -45,6 +48,11 @@ def main() -> None:
         st.dataframe(
             soccer_table.get_table_by_date_range(start=start_date, end=end_date)
         )
+
+    with st.container():
+        st.header("Results Loader")
+
+        st.file_uploader(label="Raw Results")
 
 
 if __name__ == "__main__":

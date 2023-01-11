@@ -2,7 +2,7 @@
 ### Thursday, January 5th
 | Player   |   Wins |   Ties |   Boobies |   Points |
 |:---------|-------:|-------:|----------:|---------:|
-| Paul     |      2 |      4 |         3 |       10 |
-| Michelle |      2 |      2 |         5 |        8 |
-| Susan    |      1 |      1 |         7 |        4 |
-| Kevin    |      0 |      1 |         8 |        1 |
+| Paul     |      2 |      4 |         5 |       10 |
+| Michelle |      2 |      2 |         7 |        8 |
+| Susan    |      2 |      1 |         8 |        7 |
+| Kevin    |      1 |      1 |         9 |        4 |

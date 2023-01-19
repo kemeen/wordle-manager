@@ -9,7 +9,7 @@ providers:
     website: "https://6mal5.com/"
     score_pattern: '[6mal5\.com\6mal5]  (?P<game_id>\d+) (?P<points>[\d|X|x]{1})/6'
 files:
-  data_path: "D:/software_projects/python/wordle_evaluator/data/20230118_chat.txt"
+  data_path: "D:/software_projects/python/wordle_evaluator/data/20230119_chat.txt"
   scoreboard_pickle: scoreboard.pickle
   # scoreboard_pickle: null
 formats:

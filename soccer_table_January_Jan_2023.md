@@ -1,8 +1,8 @@
 ## Wordle Standings Jan 2023
-### Thursday, January 5th
+### Tuesday, January 24th
 | Player   |   Wins |   Ties |   Boobies |   Points |
 |:---------|-------:|-------:|----------:|---------:|
-| Susan    |      6 |      3 |        13 |       21 |
-| Michelle |      4 |      4 |        14 |       16 |
-| Paul     |      3 |      4 |        15 |       13 |
-| Kevin    |      2 |      4 |        16 |       10 |
+| Susan    |      6 |      3 |        15 |       21 |
+| Michelle |      4 |      5 |        15 |       17 |
+| Paul     |      3 |      5 |        16 |       14 |
+| Kevin    |      3 |      4 |        17 |       13 |

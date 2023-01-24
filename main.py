@@ -129,7 +129,7 @@ def main() -> None:
         ),
         (
             "January",
-            date(2023, 1, 5),
+            date(2023, 1, 24),
             soccer_table.get_table_by_game_ids(games=JANUARY, providers=providers),
         ),
     ]

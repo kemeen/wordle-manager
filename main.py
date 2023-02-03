@@ -121,25 +121,25 @@ def main() -> None:
     soccer_table = SoccerTable(scoreboard=score_board)
     # date = datetime.now()
 
-    tables = [
-        (
-            "2022",
-            date(2022, 12, 31),
-            soccer_table.get_table_by_game_ids(games=YEAR_2022, providers=providers),
-        ),
-        (
-            "January",
-            date(2023, 1, 31),
-            soccer_table.get_table_by_game_ids(games=JANUARY, providers=providers),
-        ),
-    ]
-    for name, d, table in tables:
-        name = f"soccer_table_{name}_{d.strftime('%b_%Y')}.md"
-        with open(name, "w") as f:
-            suffix = ord(d.day)
-            f.write(f"## Wordle Standings {d.strftime('%b %Y')}\n")
-            f.write(f"### {d.strftime('%A, %B')} {d.day}{suffix}\n")
-            f.write(table.to_markdown())
+    # tables = [
+    #     (
+    #         "2022",
+    #         date(2022, 12, 31),
+    #         soccer_table.get_table_by_game_ids(games=YEAR_2022, providers=providers),
+    #     ),
+    #     (
+    #         "January",
+    #         date(2023, 1, 31),
+    #         soccer_table.get_table_by_game_ids(games=JANUARY, providers=providers),
+    #     ),
+    # ]
+    # for name, d, table in tables:
+    #     name = f"soccer_table_{name}_{d.strftime('%b_%Y')}.md"
+    #     with open(name, "w") as f:
+    #         suffix = ord(d.day)
+    #         f.write(f"## Wordle Standings {d.strftime('%b %Y')}\n")
+    #         f.write(f"### {d.strftime('%A, %B')} {d.day}{suffix}\n")
+    #         f.write(table.to_markdown())
 
     return
 

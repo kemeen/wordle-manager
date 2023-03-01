@@ -31,7 +31,7 @@ class Scoreboard:
     def register_scores(self, scores: List[Score]) -> None:
         for score in scores:
             if score in self.scores:
-                print(f"Score already registered: {str(score)}")
+                # print(f"Score already registered: {str(score)}")
                 continue
             self.scores.append(score)
 

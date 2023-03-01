@@ -72,9 +72,9 @@ class TextScoreReader:
         score_details = pattern.search(message.content)
 
         if score_details is None:
-            print(
-                f"NO SCORE_PATTERN in '{message}' for provider '{self.provider.name}'"
-            )
+            # print(
+            #     f"NO SCORE_PATTERN in '{message}' for provider '{self.provider.name}'"
+            # )
             return
 
         # get player

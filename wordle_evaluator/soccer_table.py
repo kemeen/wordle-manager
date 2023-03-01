@@ -140,7 +140,7 @@ class SoccerTable:
             winners = self.scoreboard.get_winners_from_scores(
                 scores=scores, provider=None
             )
-            # print(winners)
+            print(winners)
 
             p_ids = [table_dict["Player"].index(w) for w in winners]
             if len(winners) == 1:

@@ -93,7 +93,7 @@ def main() -> None:
     players = [p for p in players_from_config(player_configurations=cfg["players"])]
 
     if cfg["files"]["scoreboard_pickle"]:
-        print("Reading Scoreboard from pickle!")
+        # print("Reading Scoreboard from pickle!")
         sb_pickle = pathlib.Path(cfg["files"]["scoreboard_pickle"])
         with sb_pickle.open("rb") as f:
             score_board = pickle.load(f)

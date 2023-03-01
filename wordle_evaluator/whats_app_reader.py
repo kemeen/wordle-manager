@@ -65,7 +65,7 @@ class TextMessageReader:
         # print(messages)
         # build message instances and append them to the list
         for header, body in zip(messages[1:-1:2], messages[2::2]):
-            print(header, body)
+            # print(header, body)
             header_details = header_pattern.search(header)
             # message_datetime = datetime.strptime(header_details.group('date'), DATE_FORMAT).date()
             message = Message(
@@ -75,7 +75,7 @@ class TextMessageReader:
                 sender=header_details.group("name"),
                 content=body,
             )
-            print(message)
+            # print(message)
             self.messages.append(message)
 
     def get_messages(self) -> List[Message]:

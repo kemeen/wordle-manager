@@ -31,7 +31,7 @@ def main() -> None:
     score_board = load_score_board(sb_pickle)
 
     with st.sidebar:
-        st.header("Daily Results", anchor=None, help=None)
+        st.header("Daily Results")
         detail_date = st.date_input("Date", value=today)
 
     with st.container():

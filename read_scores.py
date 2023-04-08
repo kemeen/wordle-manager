@@ -118,7 +118,7 @@ def main() -> None:
     with open("scoreboard.pickle", "wb") as f:
         pickle.dump(score_board, f)
     # return
-    soccer_table = SoccerTable(scoreboard=score_board)
+    # soccer_table = SoccerTable(scoreboard=score_board)
     # date = datetime.now()
 
     # tables = [

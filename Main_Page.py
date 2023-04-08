@@ -29,10 +29,10 @@ def main() -> None:
     soccer_table = SoccerTable(scoreboard=score_board)
 
     with st.sidebar:
-        st.header("Table", anchor=None, help=None)
-        st.subheader("Start Date", anchor=None, help=None)
+        st.header("Table")
+        st.subheader("Start Date")
         start_date = st.date_input("Start", value=first)
-        st.subheader("End Date", anchor=None, help=None)
+        st.subheader("End Date")
         end_date = st.date_input("End", value=today)
 
     with st.container():

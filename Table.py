@@ -28,26 +28,19 @@ def main() -> None:
     score_board = load_score_board(sb_pickle)
     soccer_table = SoccerTable(scoreboard=score_board)
 
-    with st.container():
-        st.title("Wordle Results")
-        st.write(
-            f"Last score from { score_board.last_score().strftime('%A, %B %d, %Y')}"
-        )
+    with st.sidebar:
+        st.header("Table", anchor=None, help=None)
+        st.subheader("Start Date", anchor=None, help=None)
+        start_date = st.date_input("Start", value=first)
+        st.subheader("End Date", anchor=None, help=None)
+        end_date = st.date_input("End", value=today)
 
     with st.container():
-        st.header("Date Range Selection")
-        col1, col2 = st.columns(2)
-        with col1:
-            start_date = st.date_input("Start", value=first)
-        with col2:
-            end_date = st.date_input("End", value=today)
-
-    with st.container():
+        st.title("Myrtle Wordle Team Scores")
         st.header("Table")
-
         st.dataframe(
             soccer_table.get_table_by_date_range(start=start_date, end=end_date),
-            use_container_width=True,
+            use_container_width=False,
         )
 
     # with st.container():

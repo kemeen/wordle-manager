@@ -89,6 +89,7 @@ def main() -> None:
             score_board = init_scoreboard(players=players)
 
         # add scores to scoreboard
+        all_new_scores = []
         for provider in providers:
 
             # create a score reader for the provider
@@ -108,10 +109,11 @@ def main() -> None:
                     score_card = ScoreCard(score=score)
                     score_card.render()
                 st.divider()
-
-        st.button(
-            "Update Results", on_click=lambda: update_data(score_board=score_board)
-        )
+                all_new_scores.extend(new_scores)
+        if all_new_scores:
+            st.button(
+                "Update Results", on_click=lambda: update_data(score_board=score_board)
+            )
 
 
 if __name__ == "__main__":

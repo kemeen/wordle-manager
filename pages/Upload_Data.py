@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from io import StringIO
 import pathlib
 import pickle
 import streamlit as st
@@ -9,7 +10,7 @@ from scripts.read_scores import (
     players_from_config,
     providers_from_config,
 )
-from whats_app_reader import TextMessageReader
+from wordle_evaluator.whats_app_reader import TextMessageReader
 from wordle_evaluator.soccer_table import SoccerTable
 
 from wordle_evaluator.scoreboard import Scoreboard
@@ -29,9 +30,17 @@ DATE_FORMAT = "%d %B, %Y"
 class ScoreCard:
     score: Score
 
-    with st.container():
-        st.header(f"{score.player.name} - {score.provider.name} - {score.date}")
-        st.text(f"{score.game_id}: {score.score}")
+    def render(self):
+        with st.container():
+            st.subheader(f"{self.score.player.name}")
+            st.text(f"Game ID: {self.score.game_id}")
+            st.text(f"Points: {self.score.points}")
+            st.text(f"Date: {self.score.date.strftime('%Y-%m-%d')}")
+
+
+def update_data(score_board: Scoreboard):
+    with open("scoreboard.pickle", "wb") as f:
+        pickle.dump(score_board, f)
 
 
 def main() -> None:
@@ -51,13 +60,17 @@ def main() -> None:
         st.title("Uploaded Chat Data")
 
         if wordle_chat_file:
-            with wordle_chat_file.open("r", encoding="utf-8") as f:
-                messages = f.read()
-                # st.header(wordle_chat_file.read())
+            stringio = StringIO(wordle_chat_file.getvalue().decode("utf-8"))
+            messages = stringio.read()
+
         else:
             messages = None
 
         # print(messages)
+
+        if messages is None:
+            st.text("No new messages uploaded")
+            return
 
         whats_app_reader = TextMessageReader()
         whats_app_reader.read_messages(messages=messages, dialect="apple")
@@ -76,7 +89,6 @@ def main() -> None:
             score_board = init_scoreboard(players=players)
 
         # add scores to scoreboard
-        new_scores = []
         for provider in providers:
 
             # create a score reader for the provider
@@ -88,14 +100,18 @@ def main() -> None:
             score_reader.read_scores()
 
             # register Wordle Provider scores to the scoreboard
-            new_scores.extend(score_board.register_scores(score_reader.get_scores()))
+            new_scores = score_board.register_scores(score_reader.get_scores())
 
-        for score in new_scores:
-            ScoreCard(score=score)
+            if new_scores:
+                st.header(provider.name)
+                for score in new_scores:
+                    score_card = ScoreCard(score=score)
+                    score_card.render()
+                st.divider()
 
-        # save the scoreboard to a pickle
-        # with open("scoreboard.pickle", "wb") as f:
-        #     pickle.dump(score_board, f)
+        st.button(
+            "Update Results", on_click=lambda: update_data(score_board=score_board)
+        )
 
 
 if __name__ == "__main__":

@@ -114,6 +114,8 @@ def main() -> None:
             st.button(
                 "Update Results", on_click=lambda: update_data(score_board=score_board)
             )
+        else:
+            st.text("No new scores found in the provided data!")
 
 
 if __name__ == "__main__":

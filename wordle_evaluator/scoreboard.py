@@ -29,11 +29,14 @@ class Scoreboard:
         self.score_readers[provider] = reader
 
     def register_scores(self, scores: List[Score]) -> None:
+        new_scores = []
         for score in scores:
             if score in self.scores:
                 # print(f"Score already registered: {str(score)}")
                 continue
+            new_scores.append(score)
             self.scores.append(score)
+        return new_scores
 
     def update_players_from_scores(self) -> None:
         scores = self.get_all_scores()

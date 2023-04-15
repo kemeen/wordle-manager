@@ -73,7 +73,6 @@ def init_scoreboard(players: list[Player]) -> Scoreboard:
     return score_board
 
 
-# @hydra.main(config_path="conf", config_name="config")
 def main() -> None:
 
     with CONFIG_PATH.open("r", encoding="utf8") as f:

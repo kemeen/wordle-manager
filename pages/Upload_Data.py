@@ -4,22 +4,22 @@ import pathlib
 import pickle
 import streamlit as st
 import yaml
-from datetime import date
+
+# from datetime import date
 from scripts.read_scores import (
     init_scoreboard,
     players_from_config,
     providers_from_config,
 )
 from wordle_evaluator.whats_app_reader import TextMessageReader
-from wordle_evaluator.soccer_table import SoccerTable
+
+# from wordle_evaluator.soccer_table import SoccerTable
 
 from wordle_evaluator.scoreboard import Scoreboard
 
 from wordle_evaluator.scorereader import (
     Score,
     TextScoreReader,
-    filter_scores_by_date,
-    filter_scores_by_player,
 )
 
 CONFIG_PATH = pathlib.Path("conf/config.yaml")
@@ -108,8 +108,9 @@ def main() -> None:
                 for score in new_scores:
                     score_card = ScoreCard(score=score)
                     score_card.render()
-                st.divider()
                 all_new_scores.extend(new_scores)
+                st.divider()
+
         if all_new_scores:
             st.button(
                 "Update Results", on_click=lambda: update_data(score_board=score_board)

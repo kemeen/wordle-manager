@@ -58,6 +58,7 @@ def main() -> None:
 
     with st.container():
         st.title("Uploaded Chat Data")
+        st.write("Streamlit version:", st.__version__)
 
         if wordle_chat_file:
             stringio = StringIO(wordle_chat_file.getvalue().decode("utf-8"))

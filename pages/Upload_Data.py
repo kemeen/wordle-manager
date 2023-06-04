@@ -24,6 +24,7 @@ from wordle_evaluator.scorereader import (
     filter_scores_by_player,
     get_days_played_from_scores,
     get_players_from_scores,
+    get_date_from_game_id
 )
 
 CONFIG_PATH = pathlib.Path("conf/config.yaml")
@@ -115,35 +116,35 @@ def main() -> None:
                 all_new_scores.extend(new_scores)
                 # st.divider()
 
-        if all_new_scores:
-            dates = sorted(list(get_days_played_from_scores(all_new_scores)))
-            for date in dates:
-                st.divider()
-                st.header(date.strftime("%a %d %b %Y"))
-                st.divider()
-                date_scores = filter_scores_by_date(scores=all_new_scores, date=date)
-                players = sorted(
-                    list(get_players_from_scores(date_scores)), key=lambda x: x.name
-                )
-                for player in players:
-                    with st.container():
-                        st.subheader(player.name)
-                        cols = st.columns(3)
-                        player_scores = filter_scores_by_player(
-                            scores=date_scores, player=player
-                        )
-                        for i, score in enumerate(player_scores):
-                            with cols[i]:
-                                score_card = ScoreCard(score=score)
-                                score_card.render()
-                        st.divider()
-
-            st.button(
-                "Update Results",
-                on_click=lambda: update_data(score_board=score_board),
-            )
-        else:
+        if len(all_new_scores) == 0:
             st.text("No new scores found in the provided data!")
+            return
+        dates = sorted(list(get_days_played_from_scores(all_new_scores)))
+        for date in dates:
+            st.divider()
+            st.header(date.strftime("%a %d %b %Y"))
+            st.divider()
+            date_scores = filter_scores_by_date(scores=all_new_scores, date=date)
+            players = sorted(
+                list(get_players_from_scores(date_scores)), key=lambda x: x.name
+            )
+            for player in players:
+                with st.container():
+                    st.subheader(player.name)
+                    cols = st.columns(3)
+                    player_scores = filter_scores_by_player(
+                        scores=date_scores, player=player
+                    )
+                    for i, score in enumerate(player_scores):
+                        with cols[i]:
+                            score_card = ScoreCard(score=score)
+                            score_card.render()
+                    st.divider()
+
+        st.button(
+            "Update Results",
+            on_click=lambda: update_data(score_board=score_board),
+        )
 
 
 if __name__ == "__main__":

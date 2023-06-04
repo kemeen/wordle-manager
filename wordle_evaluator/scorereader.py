@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from enum import unique
 import re
 from typing import List, Protocol, Set
@@ -14,12 +14,28 @@ PROVIDER_DICT = {
     "6mal5.com": "https://6mal5.com/",
     "Wördl": "https://wordle.at/",
 }
+
+GAME_ID_DATES = {
+    "wordle": (date(day=10, month=12, year=2022), 539),
+    "6mal5.com": (date(day=10, month=12, year=2022), 677),
+    "wördl": (date(day=10, month=12, year=2022), 539),
+}
+
 # PROVIDER_NAMES = "|".join(PROVIDER_DICT.keys())
 # SCORE_PATTERN = re.compile(
 #     r"(?P<provider_name>Wordle|6mal5\.com|Wördl)(?: 🇩🇪)? +(?P<game_id>\d+) (?P<points>[\d|X|x]{1})/6"
 # )
 X_SCORE = 7
 
+def get_date_from_game_id(provider_name: str, game_id: int) -> date:
+    if provider_name not in GAME_ID_DATES:
+        print(f"{provider_name} is not a known provider!")
+        return
+    game_date_init, game_id_init = GAME_ID_DATES[provider_name]
+    game_id_diff = game_id - game_id_init
+    game_date = game_date_init + timedelta(days=game_id_diff)
+    print(provider_name, game_id, game_date)
+    return game_date
 
 @dataclass(frozen=True)
 class Score:
@@ -106,7 +122,7 @@ def filter_scores_by_provider(scores: List[Score], provider: Provider) -> List[S
 
 
 def filter_scores_by_date(scores: List[Score], date: date) -> List[Score]:
-    return [score for score in scores if score.date.date() == date]
+    return [score for score in scores if get_date_from_game_id(provider_name=score.provider.name, game_id=score.game_id) == date]
 
 
 def filter_scores_by_game_ids(scores: List[Score], game_ids: List[int]) -> List[Score]:
@@ -122,4 +138,4 @@ def get_players_from_scores(scores: List[Score]) -> Set[Player]:
 
 
 def get_days_played_from_scores(scores: List[Score]) -> Set[datetime]:
-    return set([score.date.date() for score in scores])
+    return set([get_date_from_game_id(provider_name=score.provider.name, game_id=score.game_id) for score in scores])

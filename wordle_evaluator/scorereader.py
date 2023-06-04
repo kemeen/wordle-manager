@@ -34,7 +34,7 @@ def get_date_from_game_id(provider_name: str, game_id: int) -> date:
     game_date_init, game_id_init = GAME_ID_DATES[provider_name]
     game_id_diff = game_id - game_id_init
     game_date = game_date_init + timedelta(days=game_id_diff)
-    print(provider_name, game_id, game_date)
+    # print(provider_name, game_id, game_date)
     return game_date
 
 @dataclass(frozen=True)
